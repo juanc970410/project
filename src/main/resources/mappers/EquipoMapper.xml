@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.eci.pdsw.proyecto.mybatis.mappers.EquipoMapper">
+    
+    <resultMap type='Equipo' id='datosEquipo'>
+        <id property='placa' column="placa"/>
+        <result property="nombre" column="modelo"/>
+        <result property="marca" column="marca"/>
+        <result property="estado" column="estado"/>
+        <result property="descripcion" column="descripcion"/>
+        <result property="fechaAdquisicion" column="fecha_adquisicion"/>
+        <result property="fechaGarantia" column="fecha_garantia"/>
+        <result property="valor" column="valor"/>
+        <result property="ordenCompra" column="orden_compra"/>
+        <result property="asegurado" column="asegurado"/>
+        <result property="categoria" column="categoria"/>
+        <result property="tiempoUso" column="tiempo_uso"/>
+        <result property="proveedor" column="proveedor"/>
+        <result property="descripcionEstado" column="descripcion_estado"/>
+        <result property="serial" column="serial"/>
+        <result property="foto" column="foto"/>
+        <collection property="prestamoEquipo" ofType="Prestamo" columnPrefix="pres_"/>
+    </resultMap>
+    <resultMap type='Prestamo' id='prestamoResult'>
+        <id property="id" column="id"/>
+        <result property="fechaPrestamo" column="fecha_prestamo"/>
+        <result property="fechaEstimada" column="fecha_estimada"/>
+        <result property="detalle" column="observaciones"/>
+        <result property="fechaDevolucion" column="fecha_devolucion"/>
+        <association property="usuario" resultMap="usuarioResult" columnPrefix="usu_"/>
+        <collection property="resultado" ofType="Prestamo" resultMap="prestamoResult"></collection>
+    </resultMap>
+    <resultMap type="Usuario" id="usuarioResult">
+        <id property="id" column="id"/>
+        <result property="nombre" column="nombre"/>
+        <result property="tipo" column="tipo"/>
+    </resultMap>
+    <resultMap type="Equipo_basico" id="basicoResult">
+        <id property="id" column="id"/>
+        <result property="cantidad" column="cantidad_total"/>
+        <result property="nombre" column="nombre"/>
+    </resultMap>
+    
+    <select id="loadAll" resultMap="datosEquipo">
+        SELECT Equipo.placa as placa, EquipoStock.modelo as modelo, EquipoStock.marca as marca, 
+        Equipo.estado as estado, Equipo.descripcion as descripcion, Equipo.fecha_adquisicion as fecha_adquisicion, 
+        Equipo.fecha_garantia as fecha_garantia, Equipo.valor as valor, Equipo.orden_compra as orden_compra, 
+        Equipo.asegurado as asegurado, Equipo.categoria as categoria, Equipo.tiempo_uso as tiempo_uso, Equipo.proveedor as proveedor, 
+        Equipo.descripcion_estado as descripcion_estado, Equipo.serial as serial, Equipo.foto as foto, Prestamo.id as pres_id, 
+        Prestamo.fecha_prestamo as pres_fecha_prestamo, Prestamo.fecha_estimada as pres_fecha_estimada, Prestamo.observaciones as pres_observaciones, 
+        Prestamo.fecha_devolucion as pres_fecha_devolucion, Usuario.id as usu_id, Usuario.nombre as usu_nombre, Usuario.tipo as usu_tipo 
+        FROM Equipo INNER JOIN EquipoStock ON (Equipo.EquipoStock_id = EquipoStock.id) 
+        LEFT JOIN Prestamo ON (Prestamo.Equipo_placa=Equipo.placa) LEFT JOIN Usuario ON (Prestamo.id_entrego = Usuario.id) 
+        WHERE (Equipo.EquipoStock_id=EquipoStock.id)
+    </select>
+    <select id="usuarioDeEquipo" parameterType="int" resultMap="usuarioResult">
+        SELECT Usuario.id as id, Usuario.nombre as nombre, Usuario.tipo as tipo 
+        FROM Usuario INNER JOIN Prestamo ON (Usuario.id= Prestamo.id_entrego)
+        WHERE Prestamo.Equipo_placa = #{codigoEquipo} AND Prestamo.fecha_devolucion IS NULL ;
+    </select>
+    <update id="devolucionDeEquipo" parameterType="int">
+        UPDATE Prestamo 
+        SET Prestamo.fecha_devolucion = CURRENT_TIMESTAMP
+        WHERE Prestamo.id_entrego = #{id_Usuario} AND Prestamo.fecha_devolucion IS NULL;
+    </update>
+</mapper>

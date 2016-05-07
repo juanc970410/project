@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3c.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+    <h:head></h:head>
+
+    <h:body style="text-align: center;">
+        <h:form  id="formulario_historial">
+            
+        <img  src="http://www.escuelaing.edu.co/uploads/descargables/1193_logo_horizontal.jpg" width="200" height="100" align="center"/>
+        
+        <br/>
+        <h1 style="text-align: center; color: red">LABORATORIO ELECTRÓNICA</h1>
+        <br/>
+        
+        <hr/>
+        <p:breadCrumb>
+            <p:menuitem value="Categories" url="#" />
+            <p:menuitem value="Sports" url="#" />
+            <p:menuitem value="Basketball" url="#" />
+            <p:menuitem value="NBA" url="#" />
+            <p:menuitem value="Teams" url="#" />
+            <p:menuitem value="L.A. Lakers" url="#" />
+            <p:menuitem value="Roster" url="#" />
+            <p:menuitem value="Kobe Bryant" url="#" />
+        </p:breadCrumb>
+        <hr/>
+        
+         
+        <p:panelGrid style="margin-top:25px; width:100%" >
+                <f:facet name="header">
+                    <p:row>
+                        <p:column colspan="6" style="font-weight: bolder; font-size:  x-large">LABORATORIO ELECTRÓNICA </p:column>
+                    </p:row>
+                </f:facet>
+                
+                <p:row>
+                    <p:column  style="font-weight: bold;" colspan="2"> NOMBRE DEL EQUIPO: </p:column>
+                    <p:column colspan="4"> #{HistoricoPrestamosBean.equipoSeleccionado.nombre}</p:column>
+                </p:row>
+            
+                <p:row>
+                    <p:column colspan="6" styleClass="ui-widget-header">
+                        <p:spacer height="0"/>
+                    </p:column>
+                </p:row>
+                
+                <p:row>
+                    <p:column style="font-weight: bold;"> MARCA: </p:column>
+                    <p:column colspan="2">"#{HistoricoPrestamosBean.equipoSeleccionado.marca}"</p:column>
+                    <p:column style="font-weight: bold;"> REFER. O SERIAL: </p:column>
+                    <p:column colspan="2">"#{HistoricoPrestamosBean.equipoSeleccionado.serial}"</p:column>
+                </p:row>
+                
+                <p:row>
+                    <p:column colspan="6" styleClass="ui-widget-header">
+                        <p:spacer height="0"/>
+                    </p:column>
+                </p:row>
+            
+                <p:row>
+                    <p:column style="font-weight: bold;" colspan="2"> REFERENCIA INTERNA LAB: </p:column>
+                    <p:column colspan="2">"#{HistoricoPrestamosBean.equipoSeleccionado.placa}"</p:column>
+                    <p:column style="font-weight: bold;"> ESTADO: </p:column>
+                    <p:column>"#{HistoricoPrestamosBean.equipoSeleccionado.estado}"</p:column>
+                </p:row>
+            
+                <p:row>
+                    <p:column colspan="6" styleClass="ui-widget-header">
+                        <p:spacer height="0"/>
+                    </p:column>
+                </p:row>
+                
+                <p:row>
+                    <p:column style="font-weight: bold;" colspan="2"> ACCESORIOS: </p:column>
+                    <p:column colspan="4">"#{HistoricoPrestamosBean.equipoSeleccionado.accesorios}"</p:column>
+                </p:row>
+                
+                <p:row>
+                    <p:column colspan="6" styleClass="ui-widget-header">
+                        <p:spacer height="0"/>
+                    </p:column>
+                </p:row>
+            
+                <p:row>
+                    <p:column style="font-weight: bold;" colspan="2"> Descripcion del equipo: </p:column>
+                    <p:column colspan="4">"#{HistoricoPrestamosBean.equipoSeleccionado.descripcion}"</p:column>
+                </p:row>
+                
+                <p:row>
+                    <p:column style="font-weight: bold;"> Fecha de Adquisición</p:column>
+                    <p:column style="font-weight: bold;"> Fechas límite de Garantía </p:column>
+                    <p:column style="font-weight: bold;"> Proveedor </p:column>
+                    <p:column style="font-weight: bold;"> Orden de Compra </p:column>
+                    <p:column style="font-weight: bold;" colspan="2"> Valor </p:column>
+                </p:row>
+                
+                <p:row>
+                    <p:column>"#{HistoricoPrestamosBean.equipoSeleccionado.fecha_adquisicion}"</p:column>
+                    <p:column>"#{HistoricoPrestamosBean.equipoSeleccionado.fecha_garantia}"</p:column>
+                    <p:column>"#{HistoricoPrestamosBean.equipoSeleccionado.proveedor}"</p:column>
+                    <p:column>"#{HistoricoPrestamosBean.equipoSeleccionado.orden_compra}"</p:column>
+                    <p:column colspan="2">"#{HistoricoPrestamosBean.equipoSeleccionado.valor}"</p:column>
+                </p:row>
+                
+                <p:row>
+                    <p:column style="font-weight: bold;" colspan="2"> Código de activo</p:column>
+                    <p:column style="font-weight: bold;" colspan="2"> Asegurado </p:column>
+                    <p:column style="font-weight: bold;" colspan="2"> Categoria </p:column>
+                </p:row>
+                
+                <p:row>
+                    <p:column colspan="2">"#{HistoricoPrestamosBean.equipoSeleccionado.placa}"</p:column>
+                    <p:column colspan="2">"#{HistoricoPrestamosBean.equipoSeleccionado.asegurado}"</p:column>
+                    <p:column colspan="2">"#{HistoricoPrestamosBean.equipoSeleccionado.categoria}"</p:column>
+                </p:row>
+                
+                
+        </p:panelGrid>
+        
+        
+        <p:dataTable var="prestamos" value="#{HistoricoPrestamosBean.historialPorEquipo}" scrollable="true" scrollHeight="150"  style="width:100%">
+            <f:facet name="header" >
+                <p:column style="font-weight: bolder; font-size:  x-large"> HISTORIAL </p:column> 
+            </f:facet>
+
+            <p:column  headerText="-Fecha Préstamo-">
+                <h:outputText value="#{prestamos.fechaSolicitud}" />
+            </p:column>
+            
+            <p:column   headerText="Carnet">
+                <h:outputText value="#{prestamos.usuario.id}" />
+            </p:column>
+            
+            <p:column   headerText="Usuario">
+                <h:outputText value="#{prestamos.usuario.nombre}" />
+            </p:column>
+
+            <p:column  headerText="Fecha de Devolucion">
+                <h:outputText value="#{prestamos.fechaDevolucion}" />
+            </p:column>
+
+            <p:column headerText="Observaciones">
+                <h:outputText value="#{prestamos.detalle}" />
+            </p:column>
+
+            <f:facet name="footer">
+                En total se han realizado prestamos.
+            </f:facet>
+        </p:dataTable>
+        
+            <p:panelGrid  style="width:100%">
+                <p:row>
+                    <p:column  style="width:125px" colspan="6" styleClass="ui-widget-header">
+                        <p:spacer height="0"/>
+                    </p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column style="font-weight: bold; width: 150px"> Revisado por: </p:column>
+                    <p:column colspan="2">"Null"</p:column>
+                    <p:column style="font-weight: bold; width: 150px"> Vo.Bo: </p:column>
+                    <p:column colspan="2">"Null"</p:column>
+                </p:row>
+                <p:row>
+                    <p:column style="font-weight: bold; width: 150px"> Fecha: </p:column>
+                    <p:column colspan="2">"Null"</p:column>
+                    <p:column style="font-weight: bold; width: 150px"> Fecha:</p:column>
+                    <p:column colspan="2">"Null"</p:column>
+                </p:row>
+            </p:panelGrid>
+        <br/>
+        <br/>
+        </h:form> 
+    </h:body>
+
+</html>

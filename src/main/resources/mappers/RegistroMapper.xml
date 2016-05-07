@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="edu.eci.pdsw.proyecto.mybatis.mappers.RegistroMapper">
+    <resultMap type="Prestamo" id="datosPrestamo" >
+          <id property="id" column="id"/>
+          <result property="fechaPrestamo" column="fecha_prestamo"  /> 
+          <result property="fechaEstimada" column="fecha_estimada"  /> 
+          <result property ="fechaDevolucion" column="fecha_devolucion"/>
+          <result property="detalle" column="observaciones"/>
+          <association property="usuario" resultMap="usuarioResult" columnPrefix="usu_"/>
+          <collection property="items" ofType="Equipo" resultMap="prestamoEquipo"></collection>
+    </resultMap>
+    
+    <resultMap type="Usuario" id="usuarioResult">
+        <id property="id" column="id"/>
+        <result property="nombre" column="nombre"/>
+        <result property="tipo" column="tipo"/>
+    </resultMap>
+    
+  </mapper>

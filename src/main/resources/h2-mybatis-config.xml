@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="logImpl" value="LOG4J"/>        
+    </settings>
+    
+    <typeAliases>
+        <typeAlias type='edu.eci.pdsw.proyecto.logica.entidades.Equipo' alias='Equipo'/>
+        <typeAlias type='edu.eci.pdsw.proyecto.logica.entidades.Prestamo' alias='Prestamo'/>
+        <typeAlias type='edu.eci.pdsw.proyecto.logica.entidades.Usuario' alias='Usuarios'/>
+        <typeAlias type='edu.eci.pdsw.proyecto.logica.entidades.Equipo_basico' alias='Equipo_basico'/>
+        <typeAlias type='edu.eci.pdsw.proyecto.logica.entidades.Prestamo_basico' alias='Prestamo_basico'/>
+    </typeAliases>        
+    
+    
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC" />
+            <dataSource type="POOLED">
+                <property name="driver" value="org.h2.Driver" />
+                <property name="url" value="jdbc:h2:file:./target/db/testdb;MODE=MYSQL" />
+                <property name="username" value="anonymous" />
+                <property name="password" value="" />
+            </dataSource>
+        </environment>
+    </environments>
+        
+    <mappers>
+        <mapper resource="mappers/EquipoMapper.xml"></mapper>
+        <mapper resource="mappers/RegistroMapper.xml"></mapper>                
+    </mappers> 
+        
+</configuration>

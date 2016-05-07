@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3c.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <h:head></h:head>
+    <h:body>
+        <h:form id="formRegistro">
+            <h1 style="text-align: center;">Registro de modelo</h1>
+            <p:dataTable var="Equipo" value="#{beanRegistro.equipos}" widgetVar="TablaEquipos" emptyMessage="No se encontro ningun equipo" filteredValue="#{beanRegistro.equiposFiltrados}">
+                <f:facet name="header">
+                    <p:outputLabel>
+                        <h:outputText value="Buscador de modelo: "/>
+                        <p:inputText id="filter" onkeyup="PF('TablaEquipos').filter()" placeholder="modelo"/>
+                    </p:outputLabel>
+                </f:facet>
+                <p:column headerText="Modelo">
+                    <h:outputText value="#{Equipo.nombre}"/>
+                </p:column>
+                <p:column headerText="Marca">
+                    <h:outputText value="#{Equipo.marca}"/>
+                </p:column>
+                <p:column headerText="Foto">
+                    <p:graphicImage value="#{Equipo.foto}"/>
+                </p:column>
+                <p:column headerText="Agregar" style="text-align: center;">
+                    <p:commandButton oncomplete="PF('equipoExistente').show();" icon="ui-icon-plus">
+                        <f:setPropertyActionListener value="#{Equipo}" target="#{beanRegistro.equipoSeleccionado}"/>
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+            <p:commandButton update="formRegistro" oncomplete="PF('equipoNuevo').show();" value="Nuevo modelo"/>      
+            <p:dialog header="Añadir equipo" widgetVar="equipoExistente" modal="true">
+                <h:outputText value="Aqui voy a añadir un nuevo equipo de un modelo existente"/>
+            </p:dialog>
+            <p:dialog header="Nuevo equipo" widgetVar="equipoNuevo" modal="true">
+                <h:outputLabel value="Aqui va un equipo nuevo"/>
+            </p:dialog>
+        </h:form>
+    </h:body>
+</html>
